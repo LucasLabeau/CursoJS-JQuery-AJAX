@@ -1,0 +1,34 @@
+// Formulario
+
+      <h1 id="form_h1" class="form_h1">¡Bienvenido al sistema de vacunación móvil!</h1>
+      <h3 id="form_h3" class="form_h3">Por favor, rellene el formulario con sus datos:</h3>
+      <form id="form" class="form" action="index.html" method="post" enctype="multipart/form-data">
+        <label for="name">Ingrese su/s nombre/s</label>
+        <input id="name" type="text" name="name" value="">
+        <br>
+        <label for="surname">Ingrese su/s apellido/s</label>
+        <input id="surname" type="text" name="surname" value="">
+        <br>
+        <label for="address">Ingrese su domicilio (calle, altura, piso, depto)</label>
+        <input id="address" type="text" name="address" value="">
+        <br>
+        <label for="city">Ingrese su localidad</label>
+        <input id="city" type="city" name="city" value="">
+        <br>
+        <label for="age">Ingrese su edad</label>
+        <input id="age" type="text" name="age" value="">
+
+        <label for="motive">Ingrese el motivo por el cual debe ser vacunado en su hogar (movilidad reducida, indisponibilidad horaria, etc)</label>
+        <br>
+        <textarea id="motive" name="motive" rows="8" cols="80"></textarea>
+      </form>
+
+// OBJETOS PRUEBA
+let ernesto = new Paciente ("Ernesto Joaquín", "Méndez", "Uriburu 1369 4°C", "CABA", 48, "movilidad reducida por parálisis cerebral");
+let susana = new Paciente ("Susana María", "Boticelli", "Belgrano 978", "San Miguel de Tucumán", 64, "movilidad reducida por accidente");
+let carlos = new Paciente ("Carlos", "González Grimoldi", "Larrea 632 PB C", "Ciudad de Córdoba", 29, "le debo plata a uno de los enfermeros y el chabón cree que me mudé a Chile");
+let guillermo = new Paciente ("Gullermo José", "García Martínez", "Avenida del Libertador 865 7°F", "Vicente López", 32, "trabajo hasta las 19hs de Lunes a Sábado y no me puedo presentar");
+let joaquín = new Paciente ("Joaquín Armando", "Severini", "Alberdi 564", "Rosario", 63, "movilidad reducida desde la infancia");
+pacientes.push(ernesto, susana, carlos, guillermo, joaquín);
+
+almacenamientoLocal("pacientes", JSON.stringify(pacientes));

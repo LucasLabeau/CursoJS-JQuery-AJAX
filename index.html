@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 14 - JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container" style="display: none;">
+    <section class="form">
+      <h1 id="form_h1" class="form__h1">¡Bienvenido al sistema de vacunación móvil!</h1>
+      <h3 id="form_h3" class="form__h3">Por favor, rellene el formulario con sus datos:</h3>
+      <form id="form" class="form__form" action="index.html" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Ingrese su/s nombre/s</label>
+          <input class="form-control" id="formName" type="text" name="name" value="" required>
+        </div>
+        <div class="form-group form__group">
+          <label for="surname">Ingrese su/s apellido/s</label>
+          <input class="form-control" id="formSurname" type="text" name="surname" value="" required>
+        </div>
+        <div class="form-group form__group">
+          <label for="address">Ingrese su domicilio (calle, altura, piso, depto)</label>
+          <input class="form-control" id="formAddress" type="text" name="address" value="" required>
+        </div>
+        <div class="form-group form__group">
+          <label for="province">Ingrese su provincia</label>
+          <select class="form-control" id="formProvince" type="text" name="province" value="" required></select>
+        </div>
+        <div class="form-group form__group">
+          <label for="city">Ingrese su municipio/localidad</label>
+          <select class="form-control" id="formMuni" type="text" name="city" value="" required></select>
+        </div>
+        <div class="form-group form__group">
+          <label for="city">Ingrese su barrio (junto a localidad si no figura arriba)</label>
+          <input class="form-control" id="formBarrio" type="text" name="city" value="" required>
+        </div>
+        <div class="form-group form__group">
+          <label for="age">Ingrese su edad</label>
+          <input class="form-control" id="formAge" type="number" name="age" value="" required>
+        </div>
+        <div class="form-group form__group">
+          <label for="motive">Ingrese el motivo por el cual debe ser vacunado en su hogar (movilidad reducida, indisponibilidad horaria, etc)</label>
+          <textarea class="form-control" id="formMotive" name="motive" rows="8" cols="80" required></textarea>
+        </div>
+        <div class="buttons">
+          <button id="submit" type="submit" class="btn btn-success" name="button">Enviar</button>
+          <button type="reset" class="btn btn-danger">Limpiar</button>
+        </div>
+      </form>
+    </section>
+    <section class="operaciones">
+      <button id="pacientes" class="btn btn-dark" type="button" name="pacientes">Listado de Pacientes</button>
+      <button id="solicitudes" class="btn btn-dark" type="button" name="solicitudes">Listado de solicitudes</button>
+      <button id="promedio" class="btn btn-dark" type="button" name="promedio">Promedio de Edad</button>
+      <button id="mediana" class="btn btn-dark" type="button" name="mediana">Mediana de Edad</button>
+    </section>
+    <section id="main_section" class="mainSection container">
+
+    </section>
+    <section class="volverAlForm">
+      <button id="return" class="btn btn-primary" type="button" name="return" style="display: none;">Volver al formulario</button>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+  </main>
+</body>
+</html>
