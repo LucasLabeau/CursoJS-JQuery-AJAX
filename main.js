@@ -14,16 +14,19 @@ class Paciente {
 // MÉTODO IMPRIMIR PEDIDO
 imprimirPedido() {
   $("#main_section").prepend(`
-                            <div class="pedido card" style="display: none;">
-                              <div class="card-header">
-                                <h3 class="pedido__h3">Pedido de vacunación domiciliaria</h3>
-                              </div>
-                              <div class="card-body">
-                                <p class="pedido__p">El/La señor/a ${this.nombre} ${this.apellido}, de ${this.edad} años, que reside en
-                                ${this.direccion}, ${this.barrio}, ${this.provincia}, solicita vacunación en su domicilio debido a: ${this.motivo}.</p>
-                              </div>
-                              </div>
-                              `);
+    <div class="pedido card" style="display: none;">
+      <div class="card-header">
+        <h3 class="pedido__h3">Pedido de vacunación domiciliaria</h3>
+      </div>
+      <div class="card-body">
+        <p class="pedido__p">El/La señor/a ${this.nombre} ${this.apellido}, de ${this.edad} años, que reside en
+        ${this.direccion}, ${this.barrio}, ${this.provincia}, solicita vacunación en su domicilio debido a: ${this.motivo}.</p>
+      </div>
+      <div class="card-footer">
+        <button id="${this.id}" class="btn btn-info verSolicitudBtn">Ver</button>
+      </div>
+    </div>
+    `);
 $(".pedido").fadeIn("slow");
 }
 
@@ -83,7 +86,12 @@ const imprimirForm = function() {
 
 // FUNCIÓN PARA DETERMINAR ID
 const asignarId = function() {
-  let nuevaId = pacientes[(pacientes.length - 1)].id + 1;
+  let nuevaId;
+  if (pacientes.length === 0) {
+    nuevaId = 1;
+  } else {
+    nuevaId = pacientes[(pacientes.length - 1)].id + 1;
+  }
 
   return nuevaId;
 }
@@ -293,7 +301,7 @@ $("#form").submit(function(e) {
 
   // ORDENAR PACIENTES POR ID PARA CALCULAR LA NUEVA ID
   pacientes.sort((a,b) => {
-    return a-b;
+    return a.id-b.id;
   });
 
   let id = asignarId();
@@ -321,6 +329,9 @@ $("#form").submit(function(e) {
 // LISTADO DE PACIENTES
 pacientesBtn.click(() => {
   cambiarActive(pacientesBtn);
+  pacientes.sort((a,b) => {
+    return a.id-b.id;
+  });
   resetMainSection();
   eraseForm();
   $("#main_section").fadeIn();
@@ -358,7 +369,7 @@ medianaBtn.click(() => {
   medianaPacientes();
 });
 
-// VOLVER AL FORM
+// BOTONES PARA VOLVER AL FORM
 volverBtn.click(() => {
   cambiarActive(homeBtn);
   $("#main_section").hide();
@@ -382,7 +393,6 @@ $("#main_section").on("click", ".borrarBtn", (e) => {
       break;
     }
   }
-
   almacenamientoLocal("pacientes", JSON.stringify(pacientes));
   resetMainSection();
   recuperarLocalStorage();
