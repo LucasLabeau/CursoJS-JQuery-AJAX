@@ -29,7 +29,7 @@ $(".pedido").fadeIn("slow");
 // MÉTODO AGREGAR A TABLA
   listadoTabla() {
     $("#tableBody").append(`
-                           "<tr>
+                           <tr>
                                <td>${this.apellido}</td>
                                <td>${this.nombre}</td>
                                <td>${this.direccion}</td>
@@ -38,16 +38,36 @@ $(".pedido").fadeIn("slow");
                                <td>${this.provincia}</td>
                                <td>${this.edad}</td>
                                <td>${this.motivo}</td>
-                           </tr>"
+                           </tr>
                            `);
   }
 }
 // FIN CONSTRUCTOR
 
+// INICIO FUNCIONES
+// FUNCIÓN SALUDO
+const sal = () => {
+    $("body").prepend(
+      `<div class="container-fluid saludo" style="display: none;">
+         <h1 id="form_h1" class="form__h1">¡Bienvenido al sistema de vacunación móvil!</h1>
+       </div>
+      `);
+    $(".saludo").css({
+      "z-index":"1000",
+      "height":"100vh",
+      "text-align":"center",
+      "justify-content":"center"
+    }).fadeIn("fast")
+      .css("display", "flex")
+      .delay(2500)
+      .slideUp(500);
+}
+
 //FUNCIÓN IMPRIMIR FORMULARIO
 const imprimirForm = function() {
-  $(".form").fadeIn("slow");
-  $(".operaciones").fadeIn("slow");
+  $(".initialContent").fadeIn(600)
+                      .css("display", "grid");
+  $(".form").css("display", "flex");
 }
 
 // FUNCIÓN MOSTRAR LISTADO
@@ -56,22 +76,23 @@ const listadoPacientes = function() {
     $(".table").remove();
   }
 
-  $("#main_section").prepend(`<table class="table table-bordered table-striped" style="display: none;">
-                                <thead class="thead-light">
-                                   <tr>
-                                     <th>Apellido</th>
-                                     <th>Nombre</th>
-                                     <th>Dirección</th>
-                                     <th>Barrio</th>
-                                     <th>Municipio</th>
-                                     <th>Provincia</th>
-                                     <th>Edad</th>
-                                     <th>Motivo</th>
-                                   </tr>
-                                 </thead>
-                               <tbody id="tableBody"></tbody>
-                             </table>
-                             `);
+  $("#main_section").prepend(
+    `<table class="table table-bordered table-striped" style="display: none;">
+       <thead class="thead-light">
+           <tr>
+             <th>Apellido</th>
+             <th>Nombre</th>
+             <th>Dirección</th>
+             <th>Barrio</th>
+             <th>Municipio</th>
+             <th>Provincia</th>
+             <th>Edad</th>
+             <th>Motivo</th>
+           </tr>
+         </thead>
+       <tbody id="tableBody"></tbody>
+     </table>
+     `);
 
   for(let paciente of pacientes) {
     paciente.listadoTabla();
@@ -150,7 +171,6 @@ const resetForm = function() {
 // FUNCIÓN BORRAR FORMULARIO
 const eraseForm = function() {
   $(".form").hide();
-  $(".operaciones").hide();
 }
 
 // FUNCIÓN RESETEAR MAINSECTION
@@ -187,10 +207,15 @@ const solicitudesBtn = $("#solicitudes");
 const promedioBtn = $("#promedio");
 const medianaBtn = $("#mediana");
 const volverBtn = $("#return");
+const homeBtn = $("#home");
 
 // ANIMACIÓN DE ARRANQUE Y AUTOCOMPLETAR PROVINCIAS
 $("document").ready(() => {
-  $("main").fadeIn("fast");
+
+  sal();
+  setTimeout(() => {
+    imprimirForm();
+  }, 3000);
 
   $.get(urlProvincias, (resp, status) => {
     if (status === "success") {
@@ -290,6 +315,12 @@ medianaBtn.click(() => {
 });
 
 volverBtn.click(() => {
+  $("#main_section").hide();
+  $("#return").hide();
+  imprimirForm();
+});
+
+homeBtn.click(() => {
   $("#main_section").hide();
   $("#return").hide();
   imprimirForm();

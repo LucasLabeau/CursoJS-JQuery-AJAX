@@ -9,63 +9,108 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main class="container" style="display: none;">
-    <section class="form">
-      <h1 id="form_h1" class="form__h1">¡Bienvenido al sistema de vacunación móvil!</h1>
-      <h3 id="form_h3" class="form__h3">Por favor, rellene el formulario con sus datos:</h3>
-      <form id="form" class="form__form" action="index.html" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="name">Ingrese su/s nombre/s</label>
-          <input class="form-control" id="formName" type="text" name="name" value="" required>
+  <div class="container-fluid initialContent" style="display: none;">
+    <header class="header">
+      <div class="navbar navbar-expand-lg navbar-light bg-custom">
+        <div class="container-fluid min-vh-100 align-items-start">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarExpand"
+            aria-controls="navbarExpand"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- CONTENIDO DEL NAV -->
+          <div class="navbar-collapse collapse" id="navbarExpand">
+            <ul class="nav flex-column flex-nowrap">
+              <li class="nav-item active">
+                <a id="home" class="nav-link align-middle px-0" type="button" name="home">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="pacientes" class="nav-link align-middle px-0" type="button" name="pacientes">
+                  <span>Listado de Pacientes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="solicitudes" class="nav-link align-middle px-0" type="button" name="solicitudes">
+                  <span>Listado de solicitudes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="promedio" class="nav-link align-middle px-0" type="button" name="promedio">
+                  <span>Promedio de Edad</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="mediana" class="nav-link align-middle px-0" type="button" name="mediana">
+                  <span>Mediana de Edad</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="form-group form__group">
-          <label for="surname">Ingrese su/s apellido/s</label>
-          <input class="form-control" id="formSurname" type="text" name="surname" value="" required>
-        </div>
-        <div class="form-group form__group">
-          <label for="address">Ingrese su domicilio (calle, altura, piso, depto)</label>
-          <input class="form-control" id="formAddress" type="text" name="address" value="" required>
-        </div>
-        <div class="form-group form__group">
-          <label for="province">Ingrese su provincia</label>
-          <select class="form-control" id="formProvince" type="text" name="province" value="" required></select>
-        </div>
-        <div class="form-group form__group">
-          <label for="city">Ingrese su municipio/localidad</label>
-          <select class="form-control" id="formMuni" type="text" name="city" value="" required></select>
-        </div>
-        <div class="form-group form__group">
-          <label for="city">Ingrese su barrio (junto a localidad si no figura arriba)</label>
-          <input class="form-control" id="formBarrio" type="text" name="city" value="" required>
-        </div>
-        <div class="form-group form__group">
-          <label for="age">Ingrese su edad</label>
-          <input class="form-control" id="formAge" type="number" name="age" value="" required>
-        </div>
-        <div class="form-group form__group">
-          <label for="motive">Ingrese el motivo por el cual debe ser vacunado en su hogar (movilidad reducida, indisponibilidad horaria, etc)</label>
-          <textarea class="form-control" id="formMotive" name="motive" rows="8" cols="80" required></textarea>
-        </div>
-        <div class="buttons">
-          <button id="submit" type="submit" class="btn btn-success" name="button">Enviar</button>
-          <button type="reset" class="btn btn-danger">Limpiar</button>
-        </div>
-      </form>
-    </section>
-    <section class="operaciones">
-      <button id="pacientes" class="btn btn-dark" type="button" name="pacientes">Listado de Pacientes</button>
-      <button id="solicitudes" class="btn btn-dark" type="button" name="solicitudes">Listado de solicitudes</button>
-      <button id="promedio" class="btn btn-dark" type="button" name="promedio">Promedio de Edad</button>
-      <button id="mediana" class="btn btn-dark" type="button" name="mediana">Mediana de Edad</button>
-    </section>
-    <section id="main_section" class="mainSection container">
+      </div>
+    </header>
+    <main class="container">
+      <section class="form" style="display: none;">
+        <h3 id="form_h3" class="form__h3">Por favor, rellene el formulario con sus datos:</h3>
+        <form id="form" class="form__form" action="index.html" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Ingrese su/s nombre/s</label>
+            <input class="form-control" id="formName" type="text" name="name" value="" required>
+          </div>
+          <div class="form-group form__group">
+            <label for="surname">Ingrese su/s apellido/s</label>
+            <input class="form-control" id="formSurname" type="text" name="surname" value="" required>
+          </div>
+          <div class="form-group form__group">
+            <label for="address">Ingrese su domicilio (calle, altura, piso, depto)</label>
+            <input class="form-control" id="formAddress" type="text" name="address" value="" required>
+          </div>
+          <div class="form-group form__group">
+            <label for="province">Ingrese su provincia</label>
+            <select class="form-control" id="formProvince" type="text" name="province" value="" required></select>
+          </div>
+          <div class="form-group form__group">
+            <label for="city">Ingrese su municipio/localidad</label>
+            <select class="form-control" id="formMuni" type="text" name="city" value="" required></select>
+          </div>
+          <div class="form-group form__group">
+            <label for="city">Ingrese su barrio (junto a localidad si no figura arriba)</label>
+            <input class="form-control" id="formBarrio" type="text" name="city" value="" required>
+          </div>
+          <div class="form-group form__group">
+            <label for="age">Ingrese su edad</label>
+            <input class="form-control" id="formAge" type="number" name="age" value="" required>
+          </div>
+          <div class="form-group form__group">
+            <label for="motive">Ingrese el motivo por el cual debe ser vacunado en su hogar (movilidad reducida, indisponibilidad horaria, etc)</label>
+            <textarea class="form-control" id="formMotive" name="motive" rows="8" cols="80" required></textarea>
+          </div>
+          <div class="buttons">
+            <button id="submit" type="submit" class="btn btn-success" name="button">Enviar</button>
+            <button type="reset" class="btn btn-danger">Limpiar</button>
+          </div>
+        </form>
+      </section>
+      <section id="main_section" class="mainSection container">
 
-    </section>
-    <section class="volverAlForm">
-      <button id="return" class="btn btn-primary" type="button" name="return" style="display: none;">Volver al formulario</button>
-    </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="main.js"></script>
-  </main>
-</body>
+      </section>
+      <section class="volverAlForm">
+        <button id="return" class="btn btn-primary" type="button" name="return" style="display: none;">Volver al formulario</button>
+      </section>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="main.js"></script>
+    </main>
+  </div>
+ </body>
 </html>

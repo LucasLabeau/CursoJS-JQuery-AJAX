@@ -1,8 +1,40 @@
+html {
+  font-size: 16px; }
+
 body {
-  background-color: #efe9e3;
+  background-color: #D9DBF1;
   display: flex;
   align-items: center;
   flex-flow: column; }
+
+.initialContent {
+  grid-template-areas: "header main" ". main";
+  grid-template-columns: 20vw auto;
+  grid-template-rows: 50vh auto; }
+
+header {
+  grid-area: header;
+  position: fixed;
+  z-index: 1000; }
+
+.navbar {
+  background-color: #ACB0BD;
+  border-radius: 6px;
+  border: 1px solid black; }
+
+.navbar-collapse {
+  position: relative;
+  bottom: 220px; }
+  @media only screen and (min-width: 992px) {
+    .navbar-collapse {
+      bottom: 0px; } }
+
+.nav-item a {
+  padding-top: 35px;
+  color: #eeeeee; }
+
+main {
+  grid-area: main; }
 
 .mainSection {
   display: flex;
@@ -12,25 +44,17 @@ body {
 
 .form {
   background-color: #eeeeee;
-  display: flex;
   flex-flow: column nowrap;
   border: solid 1px;
   border-radius: 5px;
   margin-top: 50px;
   padding: 0px 20px; }
   .form__h1 {
-    border-bottom: solid 1px;
-    padding-bottom: 10px;
+    font-size: 3rem;
     align-self: center;
     display: inline; }
   .form__group, .form form button {
     margin: 10px 0px; }
-
-.operaciones {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  margin: 20px 0px; }
 
 .pedido {
   background-color: #eeeeee;

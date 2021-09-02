@@ -1,0 +1,9 @@
+{
+"pacientes":[
+  {"nombre":"Julián", "apellido":"Saavedera", "direccion":"Larrea 569 1°B", "barrio":"Recoleta", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"36", "motivo":"operación de cadera" },
+  {"nombre":"Ana", "apellido":"Severino", "direccion":"Álvarez 546", "barrio":"General Rodríguez", "municipio":"Colazo", "provincia":"Córdoba", "edad":"45", "motivo":"indisponibilidad horaria" },
+  {"nombre":"Juan", "apellido":"Olmedo", "direccion":"Av. Almirante Brown 546 2°A", "barrio":"Balvanera", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"79", "motivo":"movilidad reducida" },
+  {"nombre":"Santiago Alberto", "apellido":"Cerrini", "direccion":"Echeverría 2580 4°C", "barrio":"Belgrano", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"24", "motivo":"parálisis cerebral" },
+  {"nombre":"Agustín", "apellido":"Cavallero Pitti", "direccion":"Sucre 389", "barrio":"Los Teros", "municipio":"Aguará Grande", "provincia":"Santa Fe", "edad":"56", "motivo":"movilidad reducida" },
+]
+}
