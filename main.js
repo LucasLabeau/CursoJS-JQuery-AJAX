@@ -63,6 +63,12 @@ const sal = () => {
       .slideUp(500);
 }
 
+// FUNCIÓN NAV LINK CAMBIAR ACTIVE
+const cambiarActive = function(activo) {
+  $(".active").removeClass("active");
+  activo.addClass("active");
+}
+
 //FUNCIÓN IMPRIMIR FORMULARIO
 const imprimirForm = function() {
   $(".initialContent").fadeIn(600)
@@ -180,6 +186,13 @@ const resetMainSection = function() {
   }
 }
 
+// FUNCIÓN OBJETOS PRUEBA
+const defaultObj = function() {
+    pacientes.push(julian, ana, juan, santi, agus);
+    localStorage.removeItem(pacientes);
+    almacenamientoLocal("pacientes", JSON.stringify(pacientes));
+}
+
 // FUNCIONES ALMACENAR Y RECUPERAR STORAGE
 const almacenamientoLocal = (key, value) => { localStorage.setItem(key,value) };
 
@@ -197,6 +210,13 @@ const recuperarLocalStorage = function() {
 }
 
 // FIN FUNCIONES
+
+// OBJETOS DE PRUEBA
+const julian = {"nombre":"Julián", "apellido":"Saavedera", "direccion":"Larrea 569 1°B", "barrio":"Recoleta", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"36", "motivo":"operación de cadera"};
+const ana = {"nombre":"Ana", "apellido":"Severino", "direccion":"Álvarez 546", "barrio":"General Rodríguez", "municipio":"Colazo", "provincia":"Córdoba", "edad":"45", "motivo":"indisponibilidad horaria"};
+const juan = {"nombre":"Juan", "apellido":"Olmedo", "direccion":"Av. Almirante Brown 546 2°A", "barrio":"Balvanera", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"79", "motivo":"movilidad reducida"};
+const santi = {"nombre":"Santiago Alberto", "apellido":"Cerrini", "direccion":"Echeverría 2580 4°C", "barrio":"Belgrano", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"24", "motivo":"parálisis cerebral"};
+const agus = {"nombre":"Agustín", "apellido":"Cavallero Pitti", "direccion":"Sucre 389", "barrio":"Los Teros", "municipio":"Aguará Grande", "provincia":"Santa Fe", "edad":"56", "motivo":"movilidad reducida"};
 
 // VARIABLES GLOBALES
 let pacientes = [];
@@ -216,6 +236,7 @@ $("document").ready(() => {
   setTimeout(() => {
     imprimirForm();
   }, 3000);
+  defaultObj();
 
   $.get(urlProvincias, (resp, status) => {
     if (status === "success") {
@@ -254,7 +275,6 @@ $("#formProvince").click(() => {
 });
 
 // INICIO CUESTIONARIO
-
 $("#form").submit(function(e) {
   e.preventDefault();
 
@@ -283,6 +303,7 @@ $("#form").submit(function(e) {
 
 // INICIO OPERACIONES
 pacientesBtn.click(() => {
+  cambiarActive(pacientesBtn);
   resetMainSection();
   eraseForm();
   $("#main_section").fadeIn();
@@ -291,6 +312,7 @@ pacientesBtn.click(() => {
 });
 
 solicitudesBtn.click(function() {
+  cambiarActive(solicitudesBtn);
   resetMainSection();
   $("#main_section").fadeIn();
   eraseForm();
@@ -299,6 +321,7 @@ solicitudesBtn.click(function() {
 });
 
 promedioBtn.click(() => {
+  cambiarActive(promedioBtn);
   resetMainSection();
   $("#main_section").fadeIn();
   eraseForm();
@@ -307,6 +330,7 @@ promedioBtn.click(() => {
 });
 
 medianaBtn.click(() => {
+  cambiarActive(medianaBtn);
   resetMainSection();
   $("#main_section").fadeIn();
   eraseForm();
@@ -321,6 +345,7 @@ volverBtn.click(() => {
 });
 
 homeBtn.click(() => {
+  cambiarActive(homeBtn);
   $("#main_section").hide();
   $("#return").hide();
   imprimirForm();

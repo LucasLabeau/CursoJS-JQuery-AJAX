@@ -1,25 +1,26 @@
-$bodyBack : #efe9e3;
+// VARIABLES Y MIXIN
 $lightestGray : #eeeeee;
 $light-gray : #ACB0BD;
-$bright-orange : #D9DBF1;
+$dark : #787B84;
+$back : #D9DBF1;
 
 @mixin size($width, $height) {
   width: $width;
   height: $height;
 }
 
+// ESTILOS GENERALES
 html {
   font-size: 16px;
 }
 
 body {
-  background-color: $bright-orange;
+  background-color: $back;
   display: flex;
   align-items: center;
   flex-flow: column;
 }
 
-// GRID BASE
 .initialContent {
   grid-template-areas: "header main"
                        ". main";
@@ -27,6 +28,7 @@ body {
   grid-template-rows: 50vh auto;
 }
 
+// ESTILOS DE NAVBAR
 header {
   grid-area: header;
   position: fixed;
@@ -41,7 +43,7 @@ header {
 
 .navbar-collapse {
   position: relative;
-  bottom: 220px;
+  bottom: 160px;
 
   @media only screen and (min-width: 992px) {
     bottom: 0px;
@@ -49,14 +51,22 @@ header {
 }
 
 .nav-item a{
-  padding-top: 35px;
+  display: flex;
+  align-items: center;
+  height: 60px;
   color: $lightestGray;
 }
 
+.active {
+  font-weight: 700;
+}
+
+
+//MAIN SECTION
 main {
   grid-area: main;
 }
-//MAIN SECTION
+
 .mainSection {
   display: flex;
   flex-flow: row wrap;
