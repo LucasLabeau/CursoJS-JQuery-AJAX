@@ -1,6 +1,7 @@
 // CONSTRUCTOR DE OBJETO Y MÉTODOS
 class Paciente {
-  constructor(nombre, apellido, direccion, barrio, municipio, provincia, edad, motivo) {
+  constructor(id, nombre, apellido, direccion, barrio, municipio, provincia, edad, motivo) {
+    this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
     this.direccion = direccion;
@@ -29,17 +30,21 @@ $(".pedido").fadeIn("slow");
 // MÉTODO AGREGAR A TABLA
   listadoTabla() {
     $("#tableBody").append(`
-                           <tr>
-                               <td>${this.apellido}</td>
-                               <td>${this.nombre}</td>
-                               <td>${this.direccion}</td>
-                               <td>${this.barrio}</td>
-                               <td>${this.municipio}</td>
-                               <td>${this.provincia}</td>
-                               <td>${this.edad}</td>
-                               <td>${this.motivo}</td>
-                           </tr>
-                           `);
+      <tr>
+          <td>
+            <button data-custom="${this.id}" class="btn btn-danger btn-xs borrarBtn">Borrar</button>
+          </td>
+          <td data-custom="${this.id}">${this.id}</td>
+          <td>${this.apellido}</td>
+          <td>${this.nombre}</td>
+          <td>${this.direccion}</td>
+          <td>${this.barrio}</td>
+          <td>${this.municipio}</td>
+          <td>${this.provincia}</td>
+          <td>${this.edad}</td>
+          <td>${this.motivo}</td>
+      </tr>
+      `);
   }
 }
 // FIN CONSTRUCTOR
@@ -76,6 +81,13 @@ const imprimirForm = function() {
   $(".form").css("display", "flex");
 }
 
+// FUNCIÓN PARA DETERMINAR ID
+const asignarId = function() {
+  let nuevaId = pacientes[(pacientes.length - 1)].id + 1;
+
+  return nuevaId;
+}
+
 // FUNCIÓN MOSTRAR LISTADO
 const listadoPacientes = function() {
   if ($(".table").length) {
@@ -86,6 +98,8 @@ const listadoPacientes = function() {
     `<table class="table table-bordered table-striped" style="display: none;">
        <thead class="thead-light">
            <tr>
+             <th> </th>
+             <th>ID</th>
              <th>Apellido</th>
              <th>Nombre</th>
              <th>Dirección</th>
@@ -189,7 +203,7 @@ const resetMainSection = function() {
 // FUNCIÓN OBJETOS PRUEBA
 const defaultObj = function() {
     pacientes.push(julian, ana, juan, santi, agus);
-    localStorage.removeItem(pacientes);
+    localStorage.clear();
     almacenamientoLocal("pacientes", JSON.stringify(pacientes));
 }
 
@@ -197,26 +211,24 @@ const defaultObj = function() {
 const almacenamientoLocal = (key, value) => { localStorage.setItem(key,value) };
 
 const recuperarLocalStorage = function() {
-  if (window.localStorage.length != 0) {
-    let storage = JSON.parse(localStorage.getItem("pacientes"));
-    pacientes = [];
+  let storage = JSON.parse(localStorage.getItem("pacientes"));
+  pacientes = [];
 
-    for(let obj of storage) {
-      let paciente = new Paciente(obj.nombre, obj.apellido, obj.direccion, obj.barrio, obj.municipio, obj.provincia, obj.edad, obj.motivo);
+  for(let obj of storage) {
+    let paciente = new Paciente (obj.id, obj.nombre, obj.apellido, obj.direccion, obj.barrio, obj.municipio, obj.provincia, obj.edad, obj.motivo);
 
-      pacientes.push(paciente);
-    }
+    pacientes.push(paciente);
   }
 }
 
 // FIN FUNCIONES
 
 // OBJETOS DE PRUEBA
-const julian = {"nombre":"Julián", "apellido":"Saavedera", "direccion":"Larrea 569 1°B", "barrio":"Recoleta", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"36", "motivo":"operación de cadera"};
-const ana = {"nombre":"Ana", "apellido":"Severino", "direccion":"Álvarez 546", "barrio":"General Rodríguez", "municipio":"Colazo", "provincia":"Córdoba", "edad":"45", "motivo":"indisponibilidad horaria"};
-const juan = {"nombre":"Juan", "apellido":"Olmedo", "direccion":"Av. Almirante Brown 546 2°A", "barrio":"Balvanera", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"79", "motivo":"movilidad reducida"};
-const santi = {"nombre":"Santiago Alberto", "apellido":"Cerrini", "direccion":"Echeverría 2580 4°C", "barrio":"Belgrano", "municipio":"CABA", "provincia":"Ciudad Autónoma de Buenos Aires", "edad":"24", "motivo":"parálisis cerebral"};
-const agus = {"nombre":"Agustín", "apellido":"Cavallero Pitti", "direccion":"Sucre 389", "barrio":"Los Teros", "municipio":"Aguará Grande", "provincia":"Santa Fe", "edad":"56", "motivo":"movilidad reducida"};
+let julian = new Paciente (1, "Julián", "Saavedra", "Larrea 569 1°B", "Recoleta", "CABA", "Ciudad Autónoma de Buenos Aires", 36, "operación de cadera");
+let ana = new Paciente (2, "Ana", "Severino", "Álvarez 546", "General Rodríguez", "Colazo","Córdoba",45,"indisponibilidad horaria");
+let juan = new Paciente (3, "Juan", "Olmedo", "Av. Almirante Brown 546 2°A", "Balvanera", "CABA","Ciudad Autónoma de Buenos Aires",79,"movilidad reducida");
+let santi = new Paciente (4, "Santiago Alberto", "Cerrini", "Echeverría 2580 4°C", "Belgrano", "CABA","Ciudad Autónoma de Buenos Aires",24,"parálisis cerebral");
+let agus = new Paciente (5, "Agustín", "Cavallero Pitti", "Sucre 389", "Los Teros", "Aguará Grande","Santa Fe",56,"movilidad reducida");
 
 // VARIABLES GLOBALES
 let pacientes = [];
@@ -230,7 +242,7 @@ const volverBtn = $("#return");
 const homeBtn = $("#home");
 
 // ANIMACIÓN DE ARRANQUE Y AUTOCOMPLETAR PROVINCIAS
-$("document").ready(() => {
+$(() => {
 
   sal();
   setTimeout(() => {
@@ -248,7 +260,6 @@ $("document").ready(() => {
       }
     }
   });
-
 });
 
 // AUTOCOMPLETAR MUNICIPIOS
@@ -278,6 +289,14 @@ $("#formProvince").click(() => {
 $("#form").submit(function(e) {
   e.preventDefault();
 
+  recuperarLocalStorage();
+
+  // ORDENAR PACIENTES POR ID PARA CALCULAR LA NUEVA ID
+  pacientes.sort((a,b) => {
+    return a-b;
+  });
+
+  let id = asignarId();
   let nombre = $("#formName").val();
   let apellido = $("#formSurname").val();
   let direccion = $("#formAddress").val();
@@ -287,11 +306,7 @@ $("#form").submit(function(e) {
   let edad = parseInt($("#formAge").val());
   let motivo = $("#formMotive").val().toLowerCase();
 
-  let patient = new Paciente(nombre, apellido, direccion, barrio, municipio, provincia, edad, motivo);
-
-  if (window.localStorage.length != 0) {
-    recuperarLocalStorage();
-  }
+  let patient = new Paciente(id, nombre, apellido, direccion, barrio, municipio, provincia, edad, motivo);
 
   pacientes.push(patient);
 
@@ -301,7 +316,9 @@ $("#form").submit(function(e) {
   resetForm();
 });
 
-// INICIO OPERACIONES
+// INICIO EVENTOS
+
+// LISTADO DE PACIENTES
 pacientesBtn.click(() => {
   cambiarActive(pacientesBtn);
   resetMainSection();
@@ -311,6 +328,7 @@ pacientesBtn.click(() => {
   listadoPacientes();
 });
 
+// LISTADO DE SOLICITUDES
 solicitudesBtn.click(function() {
   cambiarActive(solicitudesBtn);
   resetMainSection();
@@ -320,6 +338,7 @@ solicitudesBtn.click(function() {
   imprimirPedidos();
 });
 
+// PROMEDIO DE EDADES
 promedioBtn.click(() => {
   cambiarActive(promedioBtn);
   resetMainSection();
@@ -329,6 +348,7 @@ promedioBtn.click(() => {
   promedioPacientes();
 });
 
+// MEDIANA DE EDADES
 medianaBtn.click(() => {
   cambiarActive(medianaBtn);
   resetMainSection();
@@ -338,7 +358,9 @@ medianaBtn.click(() => {
   medianaPacientes();
 });
 
+// VOLVER AL FORM
 volverBtn.click(() => {
+  cambiarActive(homeBtn);
   $("#main_section").hide();
   $("#return").hide();
   imprimirForm();
@@ -349,4 +371,20 @@ homeBtn.click(() => {
   $("#main_section").hide();
   $("#return").hide();
   imprimirForm();
+});
+
+// BORRAR FILA DE LA TABLA
+$("#main_section").on("click", ".borrarBtn", (e) => {
+  let celda = $(e.target).attr("data-custom");
+  for (var i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].id === parseInt(celda)) {
+      pacientes.splice(i, 1);
+      break;
+    }
+  }
+
+  almacenamientoLocal("pacientes", JSON.stringify(pacientes));
+  resetMainSection();
+  recuperarLocalStorage();
+  listadoPacientes();
 });
